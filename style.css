@@ -1,0 +1,450 @@
+:root {
+    --bg-color: #0c0d10;
+    --card-bg: #13161c;
+    --gold-primary: #d4af37;
+    --gold-bright: #f3e3b4;
+    --text-light: #f6f3eb;
+    --text-muted: #8d8574;
+    --border-gold: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    font-family: 'Djore', serif;
+    letter-spacing: 1px;
+    min-height: 100vh;
+    padding: 40px;
+    position: relative;
+    overflow-x: hidden;
+
+    /* Flat Art Deco arch scales */
+    background-image: 
+        /* Outer gold arches */
+        radial-gradient(circle at 50% 0%, transparent 50%, rgba(212, 175, 55, 0.04) 50%, rgba(212, 175, 55, 0.04) 54%, transparent 54%),
+        /* Inner gold accent arches */
+        radial-gradient(circle at 50% 0%, transparent 35%, rgba(212, 175, 55, 0.03) 35%, rgba(212, 175, 55, 0.03) 38%, transparent 38%),
+        /* Offset layer for interlocking pattern */
+        radial-gradient(circle at 0% 50%, transparent 50%, rgba(212, 175, 55, 0.04) 50%, rgba(212, 175, 55, 0.04) 54%, transparent 54%),
+        radial-gradient(circle at 100% 50%, transparent 50%, rgba(212, 175, 55, 0.04) 50%, rgba(212, 175, 55, 0.04) 54%, transparent 54%);
+    
+    /* Strict grid definition to keep it flat and geometric */
+    background-size: 60px 60px;
+    background-position: 0 0, 0 0, 30px 30px, 30px 30px;
+    background-attachment: fixed;
+}
+
+/* Headings system assignment */
+h1, h2 {
+    font-family: 'Fascinate Inline', serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--gold-bright);
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-family: 'Fascinate Inline', serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--gold-bright);
+}
+
+.deco-crest {
+    font-family: 'Smythe', sans-serif;
+    color: var(--gold-primary);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+/* Reverts navigation to gold highlights */
+.nav-links .nav-tab.active, .nav-links .nav-tab:hover {
+    color: var(--gold-bright);
+    text-shadow: 0 0 10px rgba(243, 227, 180, 0.6);
+}
+
+/* Outer boundary frame */
+.deco-frame::before {
+    content: '';
+    position: absolute;
+    top: 6px; bottom: 6px; left: 6px; right: 6px;
+    border: 2px solid var(--gold-primary);
+    opacity: 0.8;
+}
+
+.deco-frame-system {
+    position: fixed;
+    top: 20px; bottom: 20px; left: 20px; right: 20px;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Base track styles creating dark frame track */
+[class^="deco-track-"] {
+    position: absolute;
+    background-color: #08090b;
+    /* Overlapping geometric arch-fan layout */
+    background-image: 
+        radial-gradient(circle at 50% 100%, transparent 40%, rgba(212, 175, 55, 0.15) 40%, rgba(212, 175, 55, 0.15) 44%, transparent 44%),
+        radial-gradient(circle at 50% 100%, transparent 20%, rgba(212, 175, 55, 0.1) 20%, rgba(212, 175, 55, 0.1) 23%, transparent 23%),
+        linear-gradient(90deg, transparent 47%, rgba(212, 175, 55, 0.15) 47%, rgba(212, 175, 55, 0.15) 53%, transparent 53%);
+    background-size: 28px 24px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* Positions each track around the absolute viewport perimeter */
+.deco-track-top {
+    top: 0; left: 0; right: 0;
+    height: 24px;
+    background-position: center bottom;
+}
+
+.deco-track-bottom {
+    bottom: 0; left: 0; right: 0;
+    height: 24px;
+    background-position: center top;
+    transform: rotate(180deg); /* Flips the fans to point inward */
+}
+
+.deco-track-left {
+    top: 24px; bottom: 24px; left: 0;
+    width: 24px;
+    background-position: right center;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    position: absolute;
+    height: calc(100vh - 88px); /* Recalculates dynamically to fit perfectly */
+}
+
+.deco-track-right {
+    top: 24px; bottom: 24px; right: 0;
+    width: 24px;
+    background-position: left center;
+    transform: rotate(90deg);
+    transform-origin: top right;
+    position: absolute;
+    height: calc(100vh - 88px);
+}
+
+/* Inner gilded wire window molding */
+.deco-inner-wire {
+    position: absolute;
+    top: 24px; bottom: 24px; left: 24px; right: 24px;
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
+    opacity: 0.85;
+}
+
+/* Full-page crisscross geometric frame */
+.deco-full-frame {
+    position: fixed;
+    top: 0; bottom: 0; left: 0; right: 0;
+    pointer-events: none;
+    z-index: 100;
+    
+    /* Pattern is applies as actual border-images instead of background-images */
+    border-style: solid;
+    border-width: 32px;
+    border-color: #08090b;
+
+    /* Lattice gradients that map cleanly to explicit boundary limits */
+    background-image: 
+        linear-gradient(45deg, rgba(212, 175, 55, 0.4) 2px, transparent 2px),
+        linear-gradient(45deg, transparent 18px, rgba(212, 175, 55, 0.3) 18px, rgba(212, 175, 55, 0.3) 21px, transparent 21px),
+        linear-gradient(135deg, rgba(212, 175, 55, 0.4) 2px, transparent 2px),
+        linear-gradient(135deg, transparent 18px, rgba(212, 175, 55, 0.3) 18px, rgba(212, 175, 55, 0.3) 21px, transparent 21px),
+        linear-gradient(-45deg, rgba(212, 175, 55, 0.35) 2px, transparent 2px),
+        linear-gradient(-135deg, rgba(212, 175, 55, 0.35) 2px, transparent 2px);
+        
+    background-size: 32px 32px;
+    background-repeat: round;
+    background-origin: border-box;
+    background-clip: border-box;
+    background-color: #08090b;
+
+    clip-path: polygon(
+        0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 
+        32px 32px, 32px calc(100% - 32px), calc(100% - 32px) calc(100% - 32px), calc(100% - 32px) 32px, 32px 32px
+    );
+}
+
+/* Inner gilded wire window molding */
+.deco-inner-wire {
+    position: absolute;
+    /* Shifts layout to clear the explicit border layout bounds */
+    top: 0px; bottom: 0px; left: 0px; right: 0px;
+    border: 2px solid var(--gold-primary);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    opacity: 0.9;
+}
+
+/* Border pattern overlay */
+.border-pattern-overlay {
+    display: none;
+}
+
+.deco-btn {
+    font-family: 'Federo', serif;
+    background: transparent;
+    color: var(--gold-primary);
+    border: 2px solid var(--gold-primary);
+    padding: 14px 35px;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.deco-btn:hover {
+    color: var(--bg-color);
+    background: var(--gold-primary);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+/* Projects view tiles */
+.project-card {
+    background-color: var(--card-bg);
+    border: var(--border-gold);
+    padding: 35px 25px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold-primary);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.project-meta {
+    font-family: 'Djore', serif;
+    letter-spacing: 2px;
+    color: var(--gold-primary);
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+.logo {
+    font-family: 'Fascinate Inline', serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--gold-bright);
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.nav-links .nav-tab {
+    font-family: 'Federo', serif;
+    font-weight: bold;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem; /* Marginally boosted size due to light weight */
+    margin: 0 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+.nav-links .nav-tab.active, .nav-links .nav-tab:hover {
+    color: var(--gold-primary);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+.deco-nav-divider {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    margin-top: 15px;
+}
+
+/* Page translation routing cores */
+.main-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    position: relative;
+}
+.page-panel {
+    display: none; /* Hide closed tabs */
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.page-panel.active {
+    display: block; /* Show current tab */
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Hero display */
+.hero-section {
+    border: var(--border-gold);
+    background-color: var(--card-bg);
+    padding: 90px 40px;
+    text-align: center;
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.9);
+}
+
+.deco-crest {
+    font-family: 'Smythe', sans-serif;
+    font-size: 0.85rem;
+    color: var(--gold-primary);
+    letter-spacing: 6px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-family: 'Fascinate Inline', serif;
+    font-weight: bold;
+    font-size: 3.5rem;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.hero-section p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.8;
+}
+
+/* About profile grid */
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+    background: var(--card-bg);
+    border: var(--border-gold);
+    padding: 50px;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.8);
+}
+
+.bio-content h2 {
+    font-family: 'Fascinate Inline', serif;
+    font-weight: bold;
+    font-size: 2.2rem;
+    color: var(--gold-bright);
+    margin: 10px 0 20px 0;
+    letter-spacing: 1px;
+}
+
+.bio-content p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+/* Exhibits/projects matrix */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-family: 'Fascinate Inline', serif;
+    font-weight: bold;
+    font-size: 2.4rem;
+    color: var(--text-light);
+    letter-spacing: 1px;
+}
+
+.projects-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Corner filigrees formatting for project cards */
+.card-corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--gold-primary);
+}
+
+.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+
+.profile-frame {
+    border: 3px double var(--gold-primary);
+    padding: 15px;
+    background: #111419;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: inset 0 0 40px #000;
+}
+
+/* Creates an sunburst/fan crest */
+.crest-container {
+    position: relative;
+    width: 160px;
+    height: 220px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 80px 80px 0 0; /* Traditional arched windows profile */
+    background: linear-gradient(180deg, rgba(212,175,55,0.02) 0%, transparent 100%);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+/* Fan lines geometry */
+.wings {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 180px;
+    background: var(--gold-primary);
+    box-shadow: 
+        -20px 5px 0 var(--gold-primary),  20px 5px 0 var(--gold-primary),
+        -40px 20px 0 var(--gold-primary), 40px 20px 0 var(--gold-primary),
+        -60px 45px 0 var(--gold-primary), 60px 45px 0 var(--gold-primary);
+    transform-origin: bottom center;
+    opacity: 0.3;
+}
+
+/* Center architectural diamond */
+.diamond-core {
+    position: absolute;
+    bottom: 30px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--gold-primary);
+    background: #111419;
+    transform: rotate(45deg);
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+.spire-line, .sub-ring {
+    display: none;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 15px;
+    font-family: 'Federo', sans-serif; /* Uses Art Deco tracking font */
+    font-size: 0.8rem;
+    color: var(--gold-primary);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--gold-bright);
+    text-shadow: 0 0 8px rgba(243, 227, 180, 0.4);
+}
